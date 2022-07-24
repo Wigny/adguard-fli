@@ -1,25 +1,11 @@
-app = "fli-hole"
-
+app = "adguard-fli"
 
 [[services]]
-  internal_port = 80
+  internal_port = 53
   protocol = "tcp"
 
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-
   [[services.ports]]
-    handlers = []
-    port = "80"
-
-  [[services.ports]]
-    handlers = ["tls"]
-    port = "443"
-
-  [[services.tcp_checks]]
-    interval = 10000
-    timeout = 2000
+    port = "53"
 
 [[services]]
   internal_port = 53
@@ -27,3 +13,61 @@ app = "fli-hole"
 
   [[services.ports]]
     port = "53"
+
+[[services]]
+  internal_port = 67
+  protocol = "udp"
+
+  [[services.ports]]
+    port = "67"
+
+[[services]]
+  internal_port = 68
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = "68"
+
+[[services]]
+  internal_port = 68
+  protocol = "udp"
+
+  [[services.ports]]
+    port = "68"
+
+[[services]]
+  internal_port = 80
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = "80"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
+
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000
+
+[[services]]
+  internal_port = 443
+  protocol = "udp"
+
+  [[services.ports]]
+    port = "443"
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "3000"
